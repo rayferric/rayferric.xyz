@@ -1,0 +1,166 @@
+.post {
+  transition-duration: 200ms;
+  text-decoration: none;
+  background-color: transparent;
+  position: relative;
+}
+
+.post:global(.unlisted) {
+  opacity: 0.5;
+}
+
+@media only screen and (max-width: 600px) {
+  .post {
+    padding: 0 0 20px 0;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .post {
+    padding: 0 50px 20px 50px;
+  }
+
+  .post:hover {
+    scale: 1.03;
+  }
+
+  .post:hover .cover {
+    box-shadow: 0 0 40px #0004;
+  }
+}
+
+.cover {
+  background-color: transparent;
+  box-shadow: 0 0 20px #0008;
+  transition-duration: 200ms;
+}
+
+@media only screen and (max-width: 600px) {
+  .cover {
+    width: 100vw;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .cover {
+    width: 480px;
+  }
+}
+
+.info {
+  margin: 20px;
+  background-color: transparent;
+}
+
+.info-title {
+  color: var(--strong-foreground-color);
+  font-size: 2em;
+  background-color: transparent;
+}
+
+.info-meta {
+  color: var(--weak-foreground-color);
+  font-size: 1em;
+  font-weight: 300;
+  margin-top: 20px;
+  background-color: transparent;
+}
+
+.info-meta-icon {
+  width: 1em;
+  height: 1em;
+}
+
+/* .info-meta-symbol {
+  color: gray;
+  background-color: transparent;
+} */
+
+.info-description {
+  margin-top: 20px;
+  color: var(--foreground-color);
+  font-size: 1em;
+  background-color: transparent;
+  font-weight: 300;
+}
+
+.admin-delete-button {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  cursor: pointer;
+  transition-duration: 200ms;
+  filter: drop-shadow(0 0 5px #000f);
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.post:hover .admin-delete-button {
+  opacity: 1;
+  visibility: visible;
+}
+
+.admin-delete-button:hover {
+  scale: 1.1;
+}
+
+.admin-delete-button-icon {
+  width: 30px;
+  height: 30px;
+  color: var(--error-color);
+}
+
+.admin-reorder-controls {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  transition-duration: 200ms;
+}
+
+@media only screen and (max-width: 600px) {
+  .admin-delete-button {
+    right: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .admin-reorder-controls {
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.post:hover .admin-reorder-controls {
+  opacity: 1;
+  visibility: visible;
+}
+
+.admin-reorder-controls-button {
+  cursor: pointer;
+  transition-duration: 200ms;
+  filter: drop-shadow(0 0 5px #000f);
+  padding: 20px;
+}
+
+.admin-reorder-controls-button:first-child {
+  padding-right: 10px;
+}
+
+.admin-reorder-controls-button:last-child {
+  padding-left: 10px;
+}
+
+.admin-reorder-controls-button:hover {
+  scale: 1.1;
+}
+
+.admin-reorder-controls-button-icon {
+  width: 30px;
+  height: 30px;
+  color: var(--foreground-color);
+}

@@ -1,0 +1,12 @@
+/.next
+/data
+/node_modules
+/public
+/.dockerignore
+/.gitignore
+/.prettierignore
+/.prettierrc
+/docker-compose.yml
+/Dockerfile
+/next-env.d.ts
+/README.md

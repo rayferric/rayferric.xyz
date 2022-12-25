@@ -1,0 +1,121 @@
+.storage-editor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0008;
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+  transition-duration: 200ms;
+}
+
+.storage-editor:global(.shown) {
+  visibility: visible;
+  opacity: 1;
+}
+
+.panel {
+  width: 1000px;
+  height: 600px;
+  max-height: calc(100% - 140px);
+  margin: 30px;
+  background-color: var(--background-color);
+  outline: dashed 5px var(--background-color);
+  box-shadow: 0 0 80px #0008;
+  padding: 40px 10px 40px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  width: 100%;
+}
+
+.panel-row:global(.growing) {
+  flex-grow: 1;
+}
+
+.panel-row:first-child {
+  margin-top: -30px;
+}
+
+.panel-scrollable-area {
+  overflow-y: scroll;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.panel-row-label {
+  margin: 30px 30px 10px 30px;
+  color: var(--foreground-color);
+  font-weight: 700;
+  text-align: center;
+}
+
+.panel-row-label:first-child {
+  margin-top: 0;
+}
+
+.panel-row-button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 250px;
+}
+
+.panel-row-button {
+  flex-grow: 1 !important;
+}
+
+.panel-row-button:last-child {
+  background-color: var(--error-color) !important;
+  outline-color: var(--error-color) !important;
+  color: var(--background-color) !important;
+}
+
+.panel-row-button {
+  width: 1px; /* Needed to center the gap between two buttons */
+}
+
+.panel-row-button:last-child {
+  margin-left: 0 !important;
+}
+
+.panel-row-button-icon {
+  width: 25px;
+  height: 25px;
+}
+
+@media only screen and (min-width: 901px) {
+  .panel-row-button-icon:global(.mobile-only) {
+    display: none;
+  }
+
+  .panel-row-input {
+    width: calc(100% - 10px) !important;
+  }
+
+  .panel-row-input:global(.file-item) {
+    margin-right: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .panel-row:not(:global(.not-wrapping)) {
+    flex-direction: column;
+  }
+
+  .panel-row-button-content {
+    display: none;
+  }
+}

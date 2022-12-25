@@ -1,0 +1,19 @@
+.not-found {
+  min-height: calc(100vh - 150px - 100px);
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.code {
+  font-weight: 700;
+  font-size: 20vh;
+  color: var(--strong-foreground-color);
+}
+
+.text {
+  font-size: 7.44vh;
+  white-space: nowrap;
+  color: var(--foreground-color);
+}

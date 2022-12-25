@@ -1,0 +1,70 @@
+.navbar {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: transparent;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .navbar {
+    justify-content: flex-end;
+  }
+}
+
+.links {
+  margin: 20px;
+  background-color: transparent;
+}
+
+.links-item {
+  font-size: 1.25em;
+  padding: 10px;
+  margin: 10px;
+  text-decoration: underline transparent solid 0.2em;
+  text-underline-offset: 0.4em;
+  font-weight: 700;
+  transition: 0.1s;
+  background-color: transparent;
+}
+
+.links-item-first {
+  color: var(--strong-brand-color);
+}
+
+.links-item-second {
+  color: var(--brand-color);
+}
+
+.links-item-third {
+  color: var(--weak-brand-color);
+}
+
+.links-item:hover,
+.links-item:global(.active) {
+  text-underline-offset: 0.4em;
+}
+
+.links-item-first:hover,
+.links-item-first:global(.active) {
+  text-decoration: underline var(--strong-brand-color) solid 0.2em;
+}
+
+.links-item-second:hover,
+.links-item-second:global(.active) {
+  text-decoration: underline var(--brand-color) solid 0.2em;
+}
+
+.links-item-third:hover,
+.links-item-third:global(.active) {
+  text-decoration: underline var(--weak-brand-color) solid 0.2em;
+}

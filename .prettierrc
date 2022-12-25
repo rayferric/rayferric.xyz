@@ -1,0 +1,19 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "quoteProps": "preserve",
+  "trailingComma": "none",
+  "semi": true,
+  "importOrderSeparation": true,
+  "importOrder": [
+    "^\\./.+\\.css$",
+    "<THIRD_PARTY_MODULES>",
+    "^\\.\\./components.*",
+    "^\\.\\./media.*",
+    "^\\.\\./pages.*",
+    "^\\.\\./src.*",
+    "^\\.\\./styles.*"
+  ]
+}

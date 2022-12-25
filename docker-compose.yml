@@ -1,0 +1,93 @@
+version: '3'
+services:
+  # Postgres Database
+  # Default credentials: postgres:postgres@postgres
+  postgres:
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rayferric.xyz
+      PGDATA: /mount/data
+    image: postgres:14-alpine
+    expose:
+      - 5432
+    volumes:
+      - ./data/postgres:/mount/data
+      - ./data/postgres-dump:/mount/dump
+
+  # Development Postgres Admin Console
+  # Authentication disabled
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@root.root
+      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+    expose:
+      - 80
+    volumes:
+      - ./data/pgadmin:/var/lib/pgadmin
+
+  # Minio Object Storage
+  # Default credentials: minioadmin:minioadmin
+  minio:
+    command: server /mount/data --console-address ":9001"
+    image: minio/minio
+    expose:
+      - 9000 # Minio
+      - 9001 # Minio Console
+    volumes:
+      - ./data/minio:/mount/data
+
+  # Development
+  dev:
+    command: yarn run next dev
+    depends_on:
+      - postgres
+      - pgadmin
+      - minio
+    environment:
+      PGHOST: postgres
+      PGPORT: 5432
+      PGDATABASE: rayferric.xyz
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      MINIO_ENDPOINT: minio
+      MINIO_PORT: 9000
+      MINIO_ACCESS_KEY: BrgfHu7mx2c3fcvj
+      MINIO_SECRET_KEY: mMVjEax1UUumjLsK87haIbvtg9vEXDmD
+      MINIO_BUCKET: rayferric.xyz
+      PORT: 3000
+    image: node:16-alpine
+    ports:
+      - 3000:3000 # Expose to WAN (useful for testing on mobile devices in the same network)
+    volumes:
+      - ./:/app
+    working_dir: /app
+
+  # Production
+  deploy:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_ORIGIN: https://rayferric.xyz
+    command: yarn run next start
+    depends_on:
+      - postgres
+      - minio
+    environment:
+      PGHOST: postgres
+      PGPORT: 5432
+      PGDATABASE: rayferric.xyz
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      MINIO_ENDPOINT: minio
+      MINIO_PORT: 9000
+      MINIO_ACCESS_KEY: BrgfHu7mx2c3fcvj
+      MINIO_SECRET_KEY: mMVjEax1UUumjLsK87haIbvtg9vEXDmD
+      MINIO_BUCKET: rayferric.xyz
+      PORT: 3000
+    ports:
+      - 127.0.0.1:3000:3000 # Expose to localhost
+    restart: always # Restart on failure and system reboot

@@ -1,0 +1,55 @@
+.input {
+  border: solid 5px var(--weak-background-color);
+  margin: 30px;
+  margin-bottom: 0;
+  box-shadow: inset 0 0 20px #0004;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  max-width: calc(100vw - 60px - 10px); /* -10px for the border */
+}
+
+.input::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  left: -5px;
+  bottom: -5px;
+  border: dashed 5px var(--weak-foreground-color);
+  pointer-events: none;
+}
+
+.input-input {
+  border-width: 0;
+  outline: none;
+  font-size: 1em;
+  padding: 20px;
+  color: var(--strong-foreground-color);
+  font-family: 'JetBrains Mono';
+  font-size: 0.9em;
+  background-color: transparent;
+  max-width: calc(100vw - 20px - 60px); /* - padding-left - margins */
+  /* font-weight: 300; */
+  flex-grow: 1;
+  width: 150px;
+}
+
+/* Account for icon width */
+.input-input:global(.has-icon) {
+  max-width: calc(
+    100vw - 20px - 60px - 60px
+  ); /* - padding-left - margins - icon width */
+  width: calc(150px - 40px);
+  padding-right: 0;
+}
+
+.input-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--weak-foreground-color);
+  cursor: pointer;
+  padding: 20px;
+}

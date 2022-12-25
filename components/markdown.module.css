@@ -1,0 +1,152 @@
+.markdown {
+  color: var(--foreground-color);
+}
+
+.markdown h1 {
+  margin: 50px 0 50px 0;
+  font-weight: 400;
+  font-size: 2em;
+  color: var(--strong-foreground-color);
+}
+
+.markdown h2 {
+  margin: 30px 0 30px 0;
+  font-weight: 400;
+  font-size: 1.5em;
+  color: var(--strong-foreground-color);
+}
+
+.markdown h3 {
+  margin: 20px 0 20px 0;
+  font-weight: 400;
+  font-size: 1.1em;
+  color: var(--strong-foreground-color);
+}
+
+.markdown p,
+.markdown li {
+  margin: 10px 0 10px 0;
+  font-weight: 300;
+  font-size: 1em;
+}
+
+.markdown a {
+  text-decoration: none;
+  color: var(--brand-color);
+  font-weight: 400;
+}
+
+.markdown a:hover {
+  color: var(--weak-brand-color);
+}
+
+.markdown pre {
+  margin: 20px 0 20px 0;
+  padding: 20px 40px 20px 40px;
+  background-color: var(--strong-background-color);
+  border-radius: 10px;
+  max-width: calc(100vw - 160px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.markdown pre pre {
+  background-color: transparent !important;
+  padding: 20px 0 20px 0 !important;
+  margin: 0 !important;
+}
+
+.markdown pre span {
+  font-size: 0.9em;
+}
+
+.markdown code {
+  background-color: var(--strong-background-color) !important;
+  border-radius: 5px;
+  font-size: 0.9em;
+  font-weight: 700;
+}
+
+.markdown :not(pre) > code {
+  padding: 2px 5px 2px 5px;
+}
+
+.code {
+  position: relative;
+}
+
+.code-copy {
+  margin-top: 10px;
+  margin-right: -10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 5;
+  transition-duration: 200ms;
+}
+
+.code-copy:global(.hidden) {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.code-copy-icon {
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  color: var(--brand-color);
+  border: dashed 2px var(--brand-color);
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: var(--strong-background-color);
+  transition-duration: 200ms;
+}
+
+@media only screen and (min-width: 601px) {
+  .code-copy-icon:hover {
+    color: var(--strong-background-color);
+    background-color: var(--brand-color);
+  }
+}
+
+.code-copy-icon:global(.activated) {
+  color: var(--strong-background-color);
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.anchor {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  cursor: pointer;
+}
+
+.anchor * {
+  transition-duration: 200ms;
+}
+
+.anchor-icon {
+  width: 30px;
+  height: 30px;
+  color: transparent;
+  padding-left: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .anchor-icon {
+    color: var(--strong-foreground-color);
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .anchor:hover .anchor-icon {
+    color: var(--strong-foreground-color);
+  }
+}

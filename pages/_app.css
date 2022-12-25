@@ -1,0 +1,111 @@
+@import '../styles/roboto-condensed.css';
+@import '../styles/jetbrains-mono.css';
+
+/* @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap'); */
+
+:root {
+  --strong-brand-color: #bb4f4e;
+  --brand-color: #dd7261;
+  --weak-brand-color: #eba973;
+
+  --success-color: #41cc66;
+  --warning-color: #fcc442;
+  --error-color: #f1575e;
+}
+
+[data-theme='light'] {
+  --strong-foreground-color: #111;
+  --foreground-color: #555;
+  --weak-foreground-color: #bbb;
+
+  --weak-background-color: #ccc;
+  --background-color: #ddd;
+  --strong-background-color: #eee;
+}
+
+[data-theme='dark'] {
+  --strong-foreground-color: #ddd;
+  --foreground-color: #aaa;
+  --weak-foreground-color: #666;
+
+  --weak-background-color: #1b232f;
+  --background-color: #0b131f;
+  --strong-background-color: #060911;
+}
+
+* {
+  margin: 0;
+  -webkit-tap-highlight-color: transparent; /* Prevents blue flashing on mobile Google Chrome */
+  line-height: 1.15; /* Fixes font clipping in some scenarios */
+}
+
+body {
+  font-family: 'Roboto Condensed', sans-serif, 'JetBrains Mono',
+    'Font Awesome 6 Brands', 'Font Awesome 6 Free Solid';
+  font-size: 18px;
+  color: red;
+  background-color: var(--background-color);
+  position: relative;
+}
+
+/* Crosses in the background */
+body::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: var(--weak-background-color);
+  mask-image: url('../media/circuit-board.svg');
+  mask-position: top;
+  mask-size: 500px;
+}
+
+/* Gradient mask over the crosses and still under the body content */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--background-color) 25%,
+    var(--background-color) 75%,
+    transparent 100%
+  );
+  z-index: -1;
+}
+
+img.twemoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 0.05em 0 0.1em;
+  vertical-align: -0.1em;
+}
+
+* {
+  scrollbar-color: var(--weak-background-color) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--weak-background-color);
+  border-radius: 1000000px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  outline: 2px solid var(--weak-background-color);
+}

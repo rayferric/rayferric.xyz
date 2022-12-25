@@ -1,0 +1,44 @@
+.markdown-toc {
+  position: sticky;
+  top: 10vh;
+  width: 300px;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 80vh;
+}
+
+.table-header {
+  color: var(--weak-foreground-color);
+  font-size: 1.5em;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  font-weight: 300;
+}
+
+.table-header-icon {
+  color: var(--weak-foreground-color);
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+}
+
+.table-item {
+  color: var(--foreground-color);
+  padding: 10px;
+  border-left: solid var(--weak-foreground-color) 1px;
+  transition-duration: 200ms;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+.table-item:global(.active) {
+  border-left: solid var(--brand-color) 5px;
+}

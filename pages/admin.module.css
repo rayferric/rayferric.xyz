@@ -1,0 +1,43 @@
+.admin {
+  min-height: calc(100vh - 150px - 100px);
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.status-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  color: var(--error-color);
+  transition-duration: 200ms;
+}
+
+.status-icon:global(.signed-in) {
+  color: var(--success-color);
+}
+
+.status-text {
+  color: var(--strong-foreground-color);
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.password-change-header {
+  color: var(--strong-foreground-color);
+  font-size: 1.2em;
+  font-weight: 300;
+  margin-top: 50px;
+}
+
+.input {
+  width: 300px;
+}

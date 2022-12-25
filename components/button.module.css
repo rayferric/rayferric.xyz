@@ -1,0 +1,20 @@
+.button {
+  font-size: 1.2em;
+  color: var(--foreground-color);
+  background-color: var(--weak-background-color);
+  border: 5px dashed var(--background-color);
+  padding: 20px;
+  cursor: pointer;
+  transition-duration: 200ms;
+  transition-property: scale, box-shadow;
+  font-weight: 700;
+  box-shadow: 0 0 20px #0008;
+  margin: 30px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.button:hover {
+  scale: 1.05;
+  box-shadow: 0 0 40px #0004;
+}

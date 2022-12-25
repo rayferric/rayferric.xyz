@@ -1,0 +1,21 @@
+.footer {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  color: var(--strong-foreground-color);
+}
+
+.heart {
+  color: var(--strong-foreground-color);
+  width: 30px;
+  height: 30px;
+  transition: 0.1s;
+}
+.heart:hover {
+  color: #bf2243;
+}
