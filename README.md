@@ -57,6 +57,45 @@ The Postgres' credentials are already stored in pgAdmin which does not require f
 
 More information about the credentials can be found in [docker-compose.yml](./docker-compose.yml).
 
+### Committing to The Repository
+
+Before committing to the repository, data directories will have invalid permissions.
+To overcome this issue, run the following commands as root:
+
+```sh
+$ yarn stop
+$ sudo chown -R $USER ./data
+$ sudo chgrp -R $USER ./data
+
+$ git add .
+...
+
+# pgAdmin directory must be reverted to the previous state
+# Otherwise pgAdmin will reset its configuration on startup
+$ sudo chown -R 5050:5050 ./data/pgadmin
+
+# Other services i.e. Postgres and MinIO should reclaim their permissions automatically
+```
+
+Beware that you should not commit the ./data directory if you did not alter the data.
+Some runtime files are being modified in there all the time, but those changes should never be committed unless explicitly needed.
+You can stage all files except for the data using the following command:
+
+```sh
+$ git add -- . ':!./data'
+```
+
+### Patching pgAdmin
+
+When initializing the development environment, pgAdmin service might refuse to start.
+It is not vital for development but might sometimes come in handy.
+If that is the case, it is most probably caused by invalid permissions of its data volume.
+You can fix that up using the below command:
+
+```sh
+$ sudo chown -R 5050:5050 ./data/pgadmin
+```
+
 ## Miscellaneous Utilities and Information
 
 ## API Routes
@@ -118,34 +157,6 @@ $ pg_restore --host={IP address assigned by Docker} --dbname=rayferric.xyz --por
 ```
 
 However, keep in mind that `yarn postgres-dump` and `yarn postgres-restore` should be used instead.
-
-### How to Normalize Permissions for Development
-
-When initializing the development environment, pgAdmin service might refuse to start.
-If that is the case, it is most probably caused by invalid permissions of its data volume.
-You can fix that up using the below command:
-
-```sh
-$ sudo chown -R 5050:5050 ./data/pgadmin
-```
-
-Before committing to the repository, data directories will have invalid permissions.
-To overcome this issue, run the following commands as root:
-
-```sh
-$ yarn stop
-$ sudo chown -R $USER ./data
-$ sudo chgrp -R $USER ./data
-
-$ git add .
-...
-
-# pgAdmin directory must be reverted to the previous state
-# Otherwise pgAdmin will reset its configuration on startup
-$ sudo chown -R 5050:5050 ./data/pgadmin
-
-# Other services i.e. Postgres and MinIO should reclaim their permissions automatically
-```
 
 ## About
 
