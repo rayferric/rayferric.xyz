@@ -7,8 +7,8 @@
     "deploy": "docker-compose up -d --build deploy",
     "stop": "docker-compose down",
     "format": "prettier --write . !./data",
-    "postgres-dump": "docker-compose up -d postgres && docker-compose exec postgres sh -c 'rm -rf /mount/dump/* && pg_dump --dbname=$POSTGRES_DB --username=$POSTGRES_USER --exclude-table-data=sessions -Z0 -j 8 -Fd -f /mount/dump'",
-    "postgres-restore": "docker-compose up -d postgres && docker-compose exec postgres sh -c 'pg_restore --dbname=$POSTGRES_DB --username=$POSTGRES_USER -c -j 8 -Fd -O /mount/dump'"
+    "postgres-dump": "docker-compose up -d postgres && sleep 3 && docker-compose exec postgres sh -c 'rm -rf /mount/dump/* && pg_dump --dbname=$POSTGRES_DB --username=$POSTGRES_USER --exclude-table-data=sessions -Z0 -j 8 -Fd -f /mount/dump'",
+    "postgres-restore": "docker-compose up -d postgres && sleep 3 && docker-compose exec postgres sh -c 'psql -U $POSTGRES_USER -d $POSTGRES_DB -c \"DROP SCHEMA IF EXISTS public CASCADE; CREATE SCHEMA public;\" && pg_restore --dbname=$POSTGRES_DB --username=$POSTGRES_USER -j 8 -Fd -O /mount/dump'"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
