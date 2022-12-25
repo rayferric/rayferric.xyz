@@ -1,6 +1,4 @@
 /.next
-# Uncomment this if you need to commit new data:
-/data
 # Postgres takes up a lot of space - we commit /data/postgres-dump which is much smaller
 /data/postgres
 /node_modules
