@@ -19,8 +19,6 @@ The data is stored as a PostgreSQL dump that must be restored with the following
 $ yarn postgres-restore
 ```
 
-[How to find the IP address?](#how-to-find-ip-addresses-of-docker-containers)
-
 Similarly, before committing to the repository, the database should be dumped:
 
 ```sh
