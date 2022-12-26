@@ -72,6 +72,17 @@
   font-weight: 300;
   margin-top: 20px;
   background-color: transparent;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.view-info-content-meta-group {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .view-info-content-meta-icon {
@@ -110,7 +121,6 @@
 .view-display {
   position: relative;
   width: 100%;
-  min-height: 80vh; /* The same as TOC */
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

@@ -14,6 +14,7 @@ import PostGrid from '../components/post-grid';
 
 import Context from '../src/context';
 import { getPostIcon, PostInfo } from '../src/post';
+import Seo from '../components/seo';
 
 type Props = {
   defaultPosts: PostInfo[];
@@ -69,6 +70,7 @@ export default function Hello({ defaultPosts }: Props) {
 
   return (
     <Twemoji options={{ className: 'twemoji' }}>
+      <Seo />
       <div className={styles['hello']}>
         <NextSeo title='Ray Ferric' />
         <HelloWorld>Take a look at some of my featured posts:</HelloWorld>

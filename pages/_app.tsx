@@ -41,7 +41,6 @@ export default function App({ Component, pageProps }: AppProps) {
       attribute='data-theme'
     >
       <Context.Provider value={{ signedIn, setSignedIn, alertsRef }}>
-        <Seo />
         <Vignette />
         <Navbar />
         {/* <PageLoader /> */}

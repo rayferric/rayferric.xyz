@@ -4,12 +4,18 @@ import { useRouter } from 'next/router';
 import mediaFaviconIco from '../media/favicon.ico';
 import mediaOgImagePng from '../media/og-image.png';
 
-export default function Seo() {
+type Props = {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+export default function Seo({ title='Ray Ferric', description = "Ray Ferric's personal portfolio and blog.", ogImage=mediaOgImagePng.src }: Props) {
   let { pathname, locale, defaultLocale } = useRouter();
 
-  if (!pathname.endsWith('/')) pathname += '/';
+  // Remove trailing slash
+  if (pathname.endsWith('/')) pathname = pathname.slice(0, -1);
 
-  const description = "Ray Ferric's personal portfolio and blog.";
   const url =
     process.env.NEXT_PUBLIC_ORIGIN +
     (locale === defaultLocale ? '' : '/' + locale) +
@@ -17,6 +23,7 @@ export default function Seo() {
 
   return (
     <NextSeo
+      title={title}
       additionalLinkTags={[
         {
           rel: 'icon',
@@ -31,10 +38,10 @@ export default function Seo() {
         url: url,
         images: [
           {
-            url: process.env.NEXT_PUBLIC_ORIGIN + mediaOgImagePng.src,
+            url: process.env.NEXT_PUBLIC_ORIGIN + ogImage,
             width: 1280,
             height: 720,
-            alt: 'Ray Ferric'
+            alt: title
           }
         ],
         type: 'website'

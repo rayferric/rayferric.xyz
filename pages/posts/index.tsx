@@ -19,6 +19,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect, useRef, useContext } from 'react';
 import { CircleLoader } from 'react-spinners';
 import Twemoji from 'react-twemoji';
+import Seo from '../../components/seo';
 
 const movieQuotes = [
   "I'm sorry, Dave. I'm afraid I can't find that.", // 2001: A Space Odyssey
@@ -112,6 +113,7 @@ export default function Posts(props: Props) {
 
   return (
     <Twemoji options={{ className: 'twemoji' }}>
+      <Seo title='Ray Ferric | Blog' />
       <div className={styles['posts']}>
         <div className={styles['interface']}>
           <InputField

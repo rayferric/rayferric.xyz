@@ -11,10 +11,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Twemoji from 'react-twemoji';
 
 import HelloWorld from '../components/hello-world';
+import Seo from '../components/seo';
 
 export default function About() {
   return (
     <div className={styles['about']}>
+      <Seo title='Ray Ferric | About' />
       <Twemoji options={{ className: 'twemoji' }}>
         <HelloWorld>
           <p>
@@ -32,7 +34,7 @@ export default function About() {
                   ' ' +
                   styles['content-contact-group-item-github']
                 }
-                href='https://github.com/rayferric/'
+                href='https://github.com/rayferric'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -62,7 +64,7 @@ export default function About() {
                   ' ' +
                   styles['content-contact-group-item-linkedin']
                 }
-                href='https://www.linkedin.com/in/rayferric/'
+                href='https://www.linkedin.com/in/rayferric'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -79,7 +81,7 @@ export default function About() {
                   ' ' +
                   styles['content-contact-group-item-twitter']
                 }
-                href='https://twitter.com/rayferric/'
+                href='https://twitter.com/rayferric'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -94,7 +96,7 @@ export default function About() {
                   ' ' +
                   styles['content-contact-group-item-youtube']
                 }
-                href='https://www.youtube.com/channel/UCEXSCnKng23b0AukQ3JpI4w/'
+                href='https://www.youtube.com/channel/UCEXSCnKng23b0AukQ3JpI4w'
                 target='_blank'
                 rel='noreferrer'
               >

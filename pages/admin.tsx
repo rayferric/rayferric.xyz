@@ -10,6 +10,7 @@ import { Button } from '../components/button';
 import { InputField } from '../components/input-field';
 
 import Context from '../src/context';
+import Seo from '../components/seo';
 
 export default function Admin() {
   const context = useContext(Context);
@@ -100,6 +101,7 @@ export default function Admin() {
   if (context.signedIn)
     return (
       <Twemoji options={{ className: 'twemoji' }}>
+        <Seo title='Ray Ferric | Admin' />
         <div className={styles['admin']}>
           <div className={styles['status']}>
             <FontAwesomeIcon
