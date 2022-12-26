@@ -96,7 +96,7 @@ export default function Admin() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  if (context.signedIn === null) return null;
+  if (context.signedIn === null) return <Seo title='Ray Ferric | Admin' />;
 
   if (context.signedIn)
     return (
