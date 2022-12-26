@@ -50,8 +50,25 @@ export default async function handler(
       // Retrieve the file
 
       try {
+        const path = `posts/${postId}/${file}`;
+
+        // State the object
+        const stat = await MinIO.statObject(path);
+
+        // Handle If-None-Match to prevent re-downloading the file
+        if (req.headers['if-none-match'] === stat.etag) {
+          res.status(304).end();
+          return;
+        }
+
         // Get the object from the bucket
-        const object = await MinIO.getObjectAsStream(`posts/${postId}/${file}`);
+        const object = await MinIO.getObjectAsStream(path);
+
+        // Set the ETag header for caching
+        res.setHeader('ETag', stat.etag);
+
+        // Set Cache-Control to 1 week
+        res.setHeader('Cache-Control', 'public, max-age=604800');
 
         // Pipe the object data to the response
         res.status(200);

@@ -70,6 +70,12 @@ export default class MinIO {
     return await MinIO.client.getObject(process.env.MINIO_BUCKET!, path);
   }
 
+  static async statObject(path: string) {
+    MinIO.initialize();
+
+    return await MinIO.client.statObject(process.env.MINIO_BUCKET!, path);
+  }
+
   private static async initialize() {
     if (this.initialized) return;
 
