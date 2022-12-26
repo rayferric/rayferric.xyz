@@ -167,6 +167,7 @@ export default function Admin() {
 
   return (
     <Twemoji options={{ className: 'twemoji' }}>
+      <Seo title='Ray Ferric | Admin' />
       <div className={styles['admin']}>
         <div className={styles['status']}>
           <FontAwesomeIcon
