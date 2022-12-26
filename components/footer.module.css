@@ -11,11 +11,11 @@
 }
 
 .heart {
-  color: var(--strong-foreground-color);
+  color: #bf2243;
   width: 30px;
   height: 30px;
-  transition: 0.1s;
+  transition-duration: 200ms;
 }
 .heart:hover {
-  color: #bf2243;
+  scale: 1.2;
 }

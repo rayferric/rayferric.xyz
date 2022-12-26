@@ -8,7 +8,7 @@ export default function Footer() {
     <div className={styles['footer']}>
       <p className={styles['text']}>Made with&nbsp;&nbsp;</p>
       <a
-        href='https://github.com/rayferric/rayferric.github.io/'
+        href='https://github.com/rayferric/rayferric.xyz'
         target='_blank'
         rel='noreferrer'
       >
