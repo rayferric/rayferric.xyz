@@ -24,7 +24,7 @@ import {
 import Context from '../src/context';
 
 type Props = {
-  show: boolean;
+  shown: boolean;
   postId: string;
   onFinish?: () => void;
 };
@@ -47,7 +47,7 @@ function downloadFile(url: string) {
   }, 0);
 }
 
-export default function StorageEditor({ show, postId, onFinish }: Props) {
+export default function StorageEditor({ shown, postId, onFinish }: Props) {
   const context = useContext(Context);
 
   type File = {
@@ -75,7 +75,7 @@ export default function StorageEditor({ show, postId, onFinish }: Props) {
   // This every time the panel is shown
   // Additionally reset the query
   useEffect(() => {
-    if (!show) return;
+    if (!shown) return;
 
     setKey((key) => key + 1);
     setQuery('');
@@ -86,12 +86,20 @@ export default function StorageEditor({ show, postId, onFinish }: Props) {
 
     document.addEventListener('keydown', listener);
     return () => document.removeEventListener('keydown', listener);
-  }, [show, onFinish]);
+  }, [shown, onFinish]);
 
   const fileUploadRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    document.body.style.overflow = shown ? 'hidden' : 'auto';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    }
+  }, [shown]);
+
   return (
-    <div className={styles['storage-editor'] + (show ? ' shown' : '')}>
+    <div className={styles['storage-editor'] + (shown ? ' shown' : '')}>
       <div className={styles['panel']} key={key}>
         <div className={styles['panel-row']}>
           <InputField

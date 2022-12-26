@@ -12,13 +12,13 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { getPostIcon, getPostName, Post, postTypes } from '../src/post';
 
 type Props = {
-  show: boolean;
+  shown: boolean;
   post: Post;
   onCancel?: () => void;
   onSave?: (post: Post) => void;
 };
 
-export default function PostEditor({ show, post, onCancel, onSave }: Props) {
+export default function PostEditor({ shown, post, onCancel, onSave }: Props) {
   const idRef = useRef<HTMLInputElement>(null);
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLInputElement>(null);
@@ -42,7 +42,7 @@ export default function PostEditor({ show, post, onCancel, onSave }: Props) {
   }, [post, onSave]);
 
   useEffect(() => {
-    if (!show) return;
+    if (!shown) return;
 
     setKey((key) => key + 1);
 
@@ -56,10 +56,18 @@ export default function PostEditor({ show, post, onCancel, onSave }: Props) {
 
     document.addEventListener('keydown', listener);
     return () => document.removeEventListener('keydown', listener);
-  }, [show, onCancel, save]);
+  }, [shown, onCancel, save]);
+
+  useEffect(() => {
+    document.body.style.overflow = shown ? 'hidden' : 'auto';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    }
+  }, [shown]);
 
   return (
-    <div className={styles['post-editor'] + (show ? ' shown' : '')}>
+    <div className={styles['post-editor'] + (shown ? ' shown' : '')}>
       <div className={styles['panel']} key={key}>
         <div className={styles['panel-scrollable-area']}>
           <div className={styles['panel-row']}>

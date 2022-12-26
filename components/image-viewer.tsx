@@ -1,6 +1,6 @@
 import styles from './image-viewer.module.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type Props = {
   src?: string;
@@ -10,6 +10,25 @@ type Props = {
 
 export function ImageViewer(props: Props) {
   const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    if (!shown) return;
+
+    const listener = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setShown(false);
+    };
+
+    document.addEventListener('keydown', listener);
+    return () => document.removeEventListener('keydown', listener);
+  }, [shown]);
+
+  useEffect(() => {
+    document.body.style.overflow = shown ? 'hidden' : 'auto';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    }
+  }, [shown]);
 
   return (
     <div>
