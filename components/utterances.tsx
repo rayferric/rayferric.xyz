@@ -18,7 +18,7 @@ export default function Utterances() {
     script.src = 'https://utteranc.es/client.js';
     script.setAttribute('issue-term', 'pathname');
     script.setAttribute('theme', 'dark-blue');
-    script.setAttribute('repo', 'rayferric/rayferric.github.io');
+    script.setAttribute('repo', 'rayferric/rayferric.xyz');
     script.crossOrigin = 'anonymous';
     script.async = true;
     ref.current?.appendChild(script);
