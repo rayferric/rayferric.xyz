@@ -19,7 +19,7 @@ export default function Navbar() {
           className={styles['links-item'] + ' ' + styles['links-item-second']}
           href='/posts/'
         >
-          POSTS
+          BLOG
         </NavLink>
         <NavLink
           className={styles['links-item'] + ' ' + styles['links-item-third']}
