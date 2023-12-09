@@ -1,5 +1,6 @@
-import Seo from '../components/seo';
 import styles from './404.module.css';
+
+import Seo from '../components/seo';
 
 export default function NotFound() {
   return (

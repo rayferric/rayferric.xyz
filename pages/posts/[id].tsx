@@ -3,6 +3,7 @@ import styles from './[id].module.css';
 import Markdown from '../../components/markdown';
 import MarkdownTOC from '../../components/markdown-toc';
 import PostEditor from '../../components/post-editor';
+import Seo from '../../components/seo';
 import StorageEditor from '../../components/storage-editor';
 import Utterances from '../../components/utterances';
 import Context from '../../src/context';
@@ -17,7 +18,6 @@ import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import { CircleLoader } from 'react-spinners';
 import Twemoji from 'react-twemoji';
-import Seo from '../../components/seo';
 
 type Params = {
   id: string;
@@ -77,7 +77,11 @@ export default function PostView({ defaultPost }: Props) {
 
   return (
     <div>
-      <Seo title={'Ray Ferric | ' + post.title} description={post.description} ogImage={coverUrl} />
+      <Seo
+        title={'Ray Ferric | ' + post.title}
+        description={post.description}
+        ogImage={coverUrl}
+      />
       <Twemoji options={{ className: 'twemoji' }}>
         <div className={styles['view-cover']} style={coverStyle} />
         <div className={styles['view-info']}>
@@ -179,27 +183,27 @@ export default function PostView({ defaultPost }: Props) {
             </p>
             <div className={styles['view-info-content-meta']}>
               <div className={styles['view-info-content-meta-group']}>
-              {
+                {
+                  <FontAwesomeIcon
+                    className={styles['view-info-content-meta-icon']}
+                    icon={getPostIcon(post.type)}
+                  />
+                }
+                &nbsp; {getPostName(post.type)} &nbsp;&nbsp;&nbsp;{' '}
+              </div>
+              <div className={styles['view-info-content-meta-group']}>
                 <FontAwesomeIcon
                   className={styles['view-info-content-meta-icon']}
-                  icon={getPostIcon(post.type)}
-                />
-              }
-              &nbsp; {getPostName(post.type)} &nbsp;&nbsp;&nbsp;{' '}
+                  icon={faCalendar}
+                />{' '}
+                &nbsp; {created} &nbsp;&nbsp;&nbsp;{' '}
               </div>
               <div className={styles['view-info-content-meta-group']}>
-              <FontAwesomeIcon
-                className={styles['view-info-content-meta-icon']}
-                icon={faCalendar}
-              />{' '}
-              &nbsp; {created} &nbsp;&nbsp;&nbsp;{' '}
-              </div>
-              <div className={styles['view-info-content-meta-group']}>
-              <FontAwesomeIcon
-                className={styles['view-info-content-meta-icon']}
-                icon={faPenToSquare}
-              />{' '}
-              &nbsp; {updated}
+                <FontAwesomeIcon
+                  className={styles['view-info-content-meta-icon']}
+                  icon={faPenToSquare}
+                />{' '}
+                &nbsp; {updated}
               </div>
             </div>
           </div>

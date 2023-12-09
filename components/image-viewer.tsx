@@ -27,7 +27,7 @@ export function ImageViewer(props: Props) {
 
     return () => {
       document.body.style.overflow = 'auto';
-    }
+    };
   }, [shown]);
 
   return (

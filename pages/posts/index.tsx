@@ -3,6 +3,7 @@ import styles from './index.module.css';
 import { Button } from '../../components/button';
 import { InputField } from '../../components/input-field';
 import PostGrid from '../../components/post-grid';
+import Seo from '../../components/seo';
 import Context from '../../src/context';
 import pool from '../../src/pg';
 import { PostInfo } from '../../src/post';
@@ -19,26 +20,18 @@ import { useRouter } from 'next/router';
 import { useState, useEffect, useRef, useContext } from 'react';
 import { CircleLoader } from 'react-spinners';
 import Twemoji from 'react-twemoji';
-import Seo from '../../components/seo';
 
 const movieQuotes = [
   "I'm sorry, Dave. I'm afraid I can't find that.", // 2001: A Space Odyssey
   'Houston, we have a problem.', // Apollo 13
   'The Matrix has no such post.', // The Matrix
-  'E.T. find the post.', // E.T. the Extra-Terrestrial
-  'I am not your post.', // Star Wars
   "You're gonna need a broader query.", // Jaws
   'Post. James Post.', // James Bond series
   'Not here, my dear Watson.', // Sherlock Holmes
   "Here's nothing!", // The Shining
-  "What's the matter, Colonel Sanders? No posts?", // Spaceballs
-  'The search for something may lead to finding nothing.', // Doctor Who
-  'Malfunctioning in every way.', // Interstellar
   'The post is a lie.', // Portal
   "These aren't the posts you're looking for.", // Star Wars
   "I'm sorry, but your post is in another castle.", // Super Mario Bros.
-  "I'll be back, when you find the post.", // The Terminator
-  'No posts to find, no posts to hide.', // The Matrix
   'In space, no one can find your posts.' // Alien
 ];
 

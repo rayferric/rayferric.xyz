@@ -95,7 +95,7 @@ export default function StorageEditor({ shown, postId, onFinish }: Props) {
 
     return () => {
       document.body.style.overflow = 'auto';
-    }
+    };
   }, [shown]);
 
   return (
@@ -211,6 +211,14 @@ export default function StorageEditor({ shown, postId, onFinish }: Props) {
                   <Button
                     className={styles['panel-row-button'] + ' error'}
                     onClick={async () => {
+                      try {
+                        await context.alertsRef?.current?.confirmBox(
+                          `Are you sure you want to delete "${file.name}"? This action cannot be undone.`
+                        );
+                      } catch {
+                        return;
+                      }
+
                       try {
                         const response = await fetch(
                           `/api/posts/${postId}/${file.name}`,

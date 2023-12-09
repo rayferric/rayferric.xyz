@@ -11,10 +11,10 @@ import { Button } from '../components/button';
 import Dropdown from '../components/dropdown';
 import HelloWorld from '../components/hello-world';
 import PostGrid from '../components/post-grid';
+import Seo from '../components/seo';
 
 import Context from '../src/context';
 import { getPostIcon, PostInfo } from '../src/post';
-import Seo from '../components/seo';
 
 type Props = {
   defaultPosts: PostInfo[];

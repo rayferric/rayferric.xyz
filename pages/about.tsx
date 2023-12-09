@@ -13,6 +13,13 @@ import Twemoji from 'react-twemoji';
 import HelloWorld from '../components/hello-world';
 import Seo from '../components/seo';
 
+export async function getStaticProps() {
+  return {
+    props: {},
+    revalidate: 60
+  };
+}
+
 export default function About() {
   return (
     <div className={styles['about']}>
@@ -23,8 +30,8 @@ export default function About() {
             My passion is computer graphics programming. 💻 I&apos;m keen on
             designing libraries and programmer friendly KISS-conformant
             interfaces. 🌱 I love mathematics and analytic geometry,
-            successfully applying them in computer science topics. 🧮 I&apos;m
-            also a Linux enthusiast. 🐧 Minecraft is art. 🧱
+            successfully applying them in computer science. 🧮 I&apos;m also a
+            Linux enthusiast. 🐧 Minecraft is art. 🧱
           </p>
           <div className={styles['content-contact']}>
             <div className={styles['content-contact-group']}>

@@ -63,7 +63,7 @@ export default function PostEditor({ shown, post, onCancel, onSave }: Props) {
 
     return () => {
       document.body.style.overflow = 'auto';
-    }
+    };
   }, [shown]);
 
   return (

@@ -8,9 +8,13 @@ type Props = {
   title?: string;
   description?: string;
   ogImage?: string;
-}
+};
 
-export default function Seo({ title='Ray Ferric', description = "Ray Ferric's personal portfolio and blog.", ogImage=mediaOgImagePng.src }: Props) {
+export default function Seo({
+  title = 'Ray Ferric',
+  description = "Ray Ferric's personal portfolio and blog.",
+  ogImage = mediaOgImagePng.src
+}: Props) {
   let { pathname, locale, defaultLocale } = useRouter();
 
   // Remove trailing slash

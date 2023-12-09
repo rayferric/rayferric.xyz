@@ -8,9 +8,9 @@ import Twemoji from 'react-twemoji';
 
 import { Button } from '../components/button';
 import { InputField } from '../components/input-field';
+import Seo from '../components/seo';
 
 import Context from '../src/context';
-import Seo from '../components/seo';
 
 export default function Admin() {
   const context = useContext(Context);
