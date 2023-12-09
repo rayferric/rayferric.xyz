@@ -145,6 +145,7 @@
   .view-display-content,
   .view-info-content {
     margin-right: 30px;
+    max-width: calc(100vw - 60px);
   }
 }
 

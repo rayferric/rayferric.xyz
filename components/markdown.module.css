@@ -41,13 +41,20 @@
 }
 
 .markdown pre {
-  margin: 20px 0 20px 0;
   padding: 20px 40px 20px 40px;
   background-color: var(--strong-background-color);
-  border-radius: 10px;
-  max-width: calc(100vw - 160px);
+  max-width: calc(100vw - 140px);
   margin-left: auto;
   margin-right: auto;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .markdown pre {
+    min-width: calc(100vw - 80px);
+    margin-left: -30px;
+    border-radius: 0;
+  }
 }
 
 .markdown pre pre {
@@ -67,7 +74,7 @@
   font-weight: 700;
 }
 
-.markdown :not(pre) > code {
+.markdown :not(pre)>code {
   padding: 2px 5px 2px 5px;
 }
 
