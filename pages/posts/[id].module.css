@@ -134,6 +134,7 @@
 
   /* content: 1000px + toc: 300px + left margin: 300px = 1600 px */
   margin-left: max(calc(300px - max(calc(1600px - 100vw), 0px)), 30px);
+  margin-top: 20px;
 }
 
 /* content: 1000px; toc: 300px; minimum left margin: 30px */
