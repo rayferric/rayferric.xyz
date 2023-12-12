@@ -18,7 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PHASE_PRODUCTION_BUILD } from 'next/dist/shared/lib/constants';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useRef, useContext } from 'react';
-import { CircleLoader } from 'react-spinners';
+import { PuffLoader } from 'react-spinners';
 import Twemoji from 'react-twemoji';
 
 const movieQuotes = [
@@ -161,7 +161,7 @@ export default function Posts(props: Props) {
         </div>
         {!posts ? (
           <div className={styles['loader']}>
-            <CircleLoader color='#bb4f4e' size='100px' />
+            <PuffLoader color='#bb4f4e' size='100px' />
           </div>
         ) : posts.length !== 0 ? (
           <PostGrid

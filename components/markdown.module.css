@@ -74,7 +74,7 @@
   font-weight: 700;
 }
 
-.markdown :not(pre)>code {
+.markdown :not(pre) > code {
   padding: 2px 5px 2px 5px;
 }
 

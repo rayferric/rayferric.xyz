@@ -1,7 +1,21 @@
-import { faBook, faMugHot } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faMugHot,
+  faTrophy,
+  faTerminal,
+  faPalette,
+  faSquareRootVariable,
+  faExplosion,
+  faCircleInfo
+} from '@fortawesome/free-solid-svg-icons';
 
-export const postTypes = ['blog', 'library'] as const;
+export const postTypes = [
+  'blog',
+  'milestone',
+  'computer-graphics',
+  'computer-science',
+  'digital-art',
+  'mathematics'
+] as const;
 type PostType = typeof postTypes[number];
 
 export type PostInfo = {
@@ -19,13 +33,29 @@ export type Post = PostInfo & {
 };
 
 const postTypeVisuals = {
-  blog: {
+  'blog': {
     name: 'Blog',
     icon: faMugHot
   },
-  library: {
-    name: 'Library',
-    icon: faBook
+  'milestone': {
+    name: 'Milestone',
+    icon: faTrophy
+  },
+  'computer-graphics': {
+    name: 'Computer Graphics',
+    icon: faExplosion
+  },
+  'computer-science': {
+    name: 'Computer Science',
+    icon: faTerminal
+  },
+  'digital-art': {
+    name: 'Digital Art',
+    icon: faPalette
+  },
+  'mathematics': {
+    name: 'Mathematics',
+    icon: faSquareRootVariable
   }
 };
 

@@ -30,7 +30,7 @@ export default function PostEditor({ shown, post, onCancel, onSave }: Props) {
     const newPost: Post = {
       id: idRef.current!.value,
       type: postTypes[typeRef.current!.getSelection()],
-      unlisted: true,
+      unlisted: post.unlisted,
       created: post.created,
       updated: new Date().toISOString(),
       title: titleRef.current!.value,
