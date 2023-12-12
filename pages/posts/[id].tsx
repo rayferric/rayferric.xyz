@@ -27,6 +27,28 @@ type Props = {
   defaultPost: Post;
 };
 
+// Find all href="..."/src="..."/[](...) urls and replace the relative ones with the API URL
+function transformRelativeUrls(post: Post) {
+  const matches = post.content.matchAll(
+    /((?:(?:(?:href|src)=")|(?:\[.*\]\())(?!\w*\:\/\/))(\S+)["\)]/g
+  );
+  let newContent = "";
+  let index = 0;
+  for (const match of matches) {
+    let i = match.index!;
+    i += match[1].length;
+
+    const url = match[2];
+    const newUrl = `/api/posts/${post.id}/${url}`;
+
+    newContent += post.content.substring(index, i) + newUrl;
+    index = i + url.length;
+  }
+  newContent += post.content.substring(index);
+
+  return newContent;
+}
+
 export async function getStaticPaths() {
   return {
     paths: [],
@@ -71,9 +93,8 @@ export default function PostView({ defaultPost }: Props) {
     dateStyle: 'long'
   }).format(new Date(post.updated));
   const coverStyle = { backgroundImage: `url('${coverUrl}')` };
-
-  // Replace all post:// tokens with the actual URL
-  const content = post.content.replaceAll('post://', `/api/posts/${post.id}/`);
+  const content = transformRelativeUrls(post);
+  console.log(content);
 
   return (
     <div>
@@ -121,8 +142,7 @@ export default function PostView({ defaultPost }: Props) {
                       setPost(newPost);
 
                       context.alertsRef?.current?.showAlert(
-                        `Post was successfully ${
-                          post.unlisted ? '' : 'un'
+                        `Post was successfully ${post.unlisted ? '' : 'un'
                         }published.`,
                         'success'
                       );
