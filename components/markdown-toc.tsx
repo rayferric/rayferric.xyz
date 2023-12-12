@@ -16,7 +16,7 @@ export default function MarkdownTOC({ children }: Props) {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const matches = useMemo(
-    () => [...children.matchAll(/^(#{1,6})\s*([\w ]+)\s*$/gm)],
+    () => [...children.matchAll(/^(#{1,6})\s*(.*)$/gm)],
     [children]
   );
 
@@ -25,7 +25,7 @@ export default function MarkdownTOC({ children }: Props) {
       let activeId: string | null = null;
       let activeOffset = -100000;
       for (const match of matches) {
-        const id = match[2].toLowerCase().replaceAll(' ', '-');
+        const id = match[2].trim().toLowerCase().replaceAll(' ', '-');
         const element = document.getElementById(id);
         if (!element) continue;
         const offset = element.getBoundingClientRect().top;
@@ -55,7 +55,7 @@ export default function MarkdownTOC({ children }: Props) {
         </div>
         {matches.map((match, i) => {
           const depth = match[1].length;
-          const title = match[2];
+          const title = match[2].trim();
           const id = title.toLowerCase().replaceAll(' ', '-');
 
           return (
