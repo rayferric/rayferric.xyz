@@ -94,7 +94,6 @@ export default function PostView({ defaultPost }: Props) {
   }).format(new Date(post.updated));
   const coverStyle = { backgroundImage: `url('${coverUrl}')` };
   const content = transformRelativeUrls(post);
-  console.log(content);
 
   return (
     <div>
