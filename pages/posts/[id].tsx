@@ -27,26 +27,20 @@ type Props = {
   defaultPost: Post;
 };
 
-// Find all href="..."/src="..."/[](...) urls and replace the relative ones with the API URL
+// Find all href="..."/src="..."/[](...) etc. urls and replace the relative ones with the API URL
 function transformRelativeUrls(post: Post) {
-  const matches = post.content.matchAll(
-    /((?:(?:(?:href|src)=")|(?:\[.*\]\())(?!\w*\:\/\/))(\S+)["\)]/g
+  const codeBlockRegex = /```[\s\S]*?```|`[^`\n]*`/g;
+  const codeBlocks = Array.from(post.content.matchAll(codeBlockRegex), match => [match.index!, match.index! + match[0].length]);
+
+  const transformedContent = post.content.replace(
+    /((?:(?:(?:href|src|poster)=")|(?:\[.*\]\())(?!\w*\:\/\/))(\S+)(["\)])/g,
+    (_, prefix, url, suffix, offset) => {
+      const isInCodeBlock = codeBlocks.some(([start, end]) => offset >= start && offset < end);
+      return isInCodeBlock ? `${prefix}${url}${suffix}` : `${prefix}/api/posts/${post.id}/${url}${suffix}`;
+    }
   );
-  let newContent = "";
-  let index = 0;
-  for (const match of matches) {
-    let i = match.index!;
-    i += match[1].length;
 
-    const url = match[2];
-    const newUrl = `/api/posts/${post.id}/${url}`;
-
-    newContent += post.content.substring(index, i) + newUrl;
-    index = i + url.length;
-  }
-  newContent += post.content.substring(index);
-
-  return newContent;
+  return transformedContent;
 }
 
 export async function getStaticPaths() {
