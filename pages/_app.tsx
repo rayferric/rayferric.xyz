@@ -1,7 +1,6 @@
 import './_app.css';
 
 import { NextSeo } from 'next-seo';
-import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
@@ -35,19 +34,13 @@ export default function App({ Component, pageProps }: AppProps) {
   const alertsRef = useRef<Alerts>(null);
 
   return (
-    <ThemeProvider
-      themes={['dark', 'light']}
-      defaultTheme='dark'
-      attribute='data-theme'
-    >
-      <Context.Provider value={{ signedIn, setSignedIn, alertsRef }}>
-        <Vignette />
-        <Navbar />
-        {/* <PageLoader /> */}
-        <Component {...pageProps} />
-        <Footer />
-        <Alerts ref={alertsRef} />
-      </Context.Provider>
-    </ThemeProvider>
+    <Context.Provider value={{ signedIn, setSignedIn, alertsRef }}>
+      <Vignette />
+      <Navbar />
+      {/* <PageLoader /> */}
+      <Component {...pageProps} />
+      <Footer />
+      <Alerts ref={alertsRef} />
+    </Context.Provider>
   );
 }

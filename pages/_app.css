@@ -11,19 +11,7 @@
   --success-color: #41cc66;
   --warning-color: #fcc442;
   --error-color: #f1575e;
-}
 
-[data-theme='light'] {
-  --strong-foreground-color: #111;
-  --foreground-color: #555;
-  --weak-foreground-color: #bbb;
-
-  --weak-background-color: #ccc;
-  --background-color: #ddd;
-  --strong-background-color: #eee;
-}
-
-[data-theme='dark'] {
   --strong-foreground-color: #ddd;
   --foreground-color: #aaa;
   --weak-foreground-color: #666;
@@ -35,8 +23,10 @@
 
 * {
   margin: 0;
-  -webkit-tap-highlight-color: transparent; /* Prevents blue flashing on mobile Google Chrome */
-  line-height: 1.15; /* Fixes font clipping in some scenarios */
+  -webkit-tap-highlight-color: transparent;
+  /* Prevents blue flashing on mobile Google Chrome */
+  line-height: 1.15;
+  /* Fixes font clipping in some scenarios */
 }
 
 body {

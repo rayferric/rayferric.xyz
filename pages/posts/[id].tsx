@@ -30,13 +30,20 @@ type Props = {
 // Find all href="..."/src="..."/[](...) etc. urls and replace the relative ones with the API URL
 function transformRelativeUrls(post: Post) {
   const codeBlockRegex = /```[\s\S]*?```|`[^`\n]*`/g;
-  const codeBlocks = Array.from(post.content.matchAll(codeBlockRegex), match => [match.index!, match.index! + match[0].length]);
+  const codeBlocks = Array.from(
+    post.content.matchAll(codeBlockRegex),
+    (match) => [match.index!, match.index! + match[0].length]
+  );
 
   const transformedContent = post.content.replace(
     /((?:(?:(?:href|src|poster)=")|(?:\[.*\]\())(?!\w*\:\/\/))(\S+)(["\)])/g,
     (_, prefix, url, suffix, offset) => {
-      const isInCodeBlock = codeBlocks.some(([start, end]) => offset >= start && offset < end);
-      return isInCodeBlock ? `${prefix}${url}${suffix}` : `${prefix}/api/posts/${post.id}/${url}${suffix}`;
+      const isInCodeBlock = codeBlocks.some(
+        ([start, end]) => offset >= start && offset < end
+      );
+      return isInCodeBlock
+        ? `${prefix}${url}${suffix}`
+        : `${prefix}/api/posts/${post.id}/${url}${suffix}`;
     }
   );
 
@@ -135,7 +142,8 @@ export default function PostView({ defaultPost }: Props) {
                       setPost(newPost);
 
                       context.alertsRef?.current?.showAlert(
-                        `Post was successfully ${post.unlisted ? '' : 'un'
+                        `Post was successfully ${
+                          post.unlisted ? '' : 'un'
                         }published.`,
                         'success'
                       );
