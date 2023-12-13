@@ -44,6 +44,7 @@ export default async function handler(
           return;
         }
 
+        // TODO: Make it work with pre-rendering. This is a temporary fix.
         // if (post.unlisted) {
         //   let validSession = false;
         //   // If the user has a session, validate it
