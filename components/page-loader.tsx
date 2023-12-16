@@ -1,7 +1,7 @@
 import style from './page-loader.module.css';
 
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { PuffLoader } from 'react-spinners';
 
 export default function PageLoader() {
@@ -15,7 +15,7 @@ export default function PageLoader() {
         setBrandColor(style.getPropertyValue('--strong-brand-color'));
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setDone(false);
         Promise.all(
             Array.from(document.images)
