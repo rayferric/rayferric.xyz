@@ -20,7 +20,6 @@
 }
 
 .image {
-  image-rendering: crisp-edges;
   width: 80%;
   height: 80%;
   object-fit: contain;

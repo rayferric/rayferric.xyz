@@ -1,0 +1,18 @@
+.page-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 3;
+    background-color: var(--background-color);
+    width: 100vw;
+    height: 100vh;
+    margin-top: -35px;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.done {
+    transition: opacity 1s ease;
+    opacity: 0;
+}

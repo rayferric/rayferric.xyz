@@ -1,15 +1,12 @@
 import './_app.css';
 
-import { NextSeo } from 'next-seo';
 import type { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 
 import Alerts from '../components/alerts';
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
-// import PageLoader from '../components/page-loader';
-import Seo from '../components/seo';
+import PageLoader from '../components/page-loader';
 import Vignette from '../components/vignette';
 
 import Context from '../src/context';
@@ -37,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Context.Provider value={{ signedIn, setSignedIn, alertsRef }}>
       <Vignette />
       <Navbar />
-      {/* <PageLoader /> */}
+      <PageLoader />
       <Component {...pageProps} />
       <Footer />
       <Alerts ref={alertsRef} />

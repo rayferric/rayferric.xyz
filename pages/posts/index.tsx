@@ -69,6 +69,13 @@ export default function Posts(props: Props) {
   const [posts, setPosts] = useState<PostInfo[] | null>(defaultPosts.current);
   const timeout = useRef<NodeJS.Timeout>();
   const router = useRouter();
+  const [brandColor, setBrandColor] = useState('#000');
+
+  // Read brand color from CSS
+  useEffect(() => {
+    const style = getComputedStyle(document.body);
+    setBrandColor(style.getPropertyValue('--strong-brand-color'));
+  }, []);
 
   // Fetch unlisted posts if signed in
   useEffect(() => {
@@ -92,9 +99,9 @@ export default function Posts(props: Props) {
 
     const response = await fetch(
       '/api/posts?' +
-        new URLSearchParams({
-          search: query
-        })
+      new URLSearchParams({
+        search: query
+      })
     );
     const posts = await response.json();
 
@@ -161,7 +168,7 @@ export default function Posts(props: Props) {
         </div>
         {!posts ? (
           <div className={styles['loader']}>
-            <PuffLoader color='#bb4f4e' size='100px' />
+            <PuffLoader color={brandColor} size='100px' />
           </div>
         ) : posts.length !== 0 ? (
           <PostGrid
@@ -195,7 +202,7 @@ export default function Posts(props: Props) {
                     context.alertsRef?.current?.showAlert(e.message, 'error');
                   }
                 }
-              } catch {}
+              } catch { }
             }}
           />
         ) : (

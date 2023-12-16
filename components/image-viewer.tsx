@@ -1,6 +1,6 @@
 import styles from './image-viewer.module.css';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {
   src?: string;
@@ -10,17 +10,38 @@ type Props = {
 
 export function ImageViewer(props: Props) {
   const [shown, setShown] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     if (!shown) return;
 
-    const listener = (event: KeyboardEvent) => {
+    // Handle escape key.
+    const keyListener = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setShown(false);
     };
+    document.addEventListener('keydown', keyListener);
 
-    document.addEventListener('keydown', listener);
-    return () => document.removeEventListener('keydown', listener);
-  }, [shown]);
+    // Adjust image-rendering depending on img size.
+    // Use crisp-edges if image is zoomed in, otherwise use smooth.
+    const sizeListener = () => {
+      if (!imgRef.current) return;
+
+      const img = imgRef.current;
+      if (img.clientWidth > img.naturalWidth) {
+        img.style.imageRendering = 'crisp-edges';
+      } else {
+        img.style.imageRendering = 'smooth';
+      }
+    };
+    sizeListener(); // Call once to set initial image-rendering.
+    const resizeObserver = new ResizeObserver(sizeListener);
+    resizeObserver.observe(imgRef.current!);
+
+    return () => {
+      document.removeEventListener('keydown', keyListener);
+      resizeObserver.disconnect();
+    };
+  }, [shown, imgRef, props.src]);
 
   useEffect(() => {
     document.body.style.overflow = shown ? 'hidden' : 'auto';
@@ -37,7 +58,12 @@ export function ImageViewer(props: Props) {
         className={styles['image-viewer'] + (shown ? ' shown' : '')}
         onClick={() => setShown(false)}
       >
-        <img className={styles['image']} alt={props.alt} src={props.src} />
+        <img
+          className={styles['image']}
+          alt={props.alt}
+          src={props.src}
+          ref={imgRef}
+        />
       </div>
     </div>
   );

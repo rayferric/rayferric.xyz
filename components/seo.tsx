@@ -1,5 +1,5 @@
 import { NextSeo } from 'next-seo';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation'
 
 import mediaFaviconIco from '../media/favicon.ico';
 import mediaOgImagePng from '../media/og-image.png';
@@ -15,15 +15,12 @@ export default function Seo({
   description = "Ray Ferric's personal portfolio and blog.",
   ogImage = mediaOgImagePng.src
 }: Props) {
-  let { pathname, locale, defaultLocale } = useRouter();
+  let pathname = usePathname() ?? '';
 
   // Remove trailing slash
   if (pathname.endsWith('/')) pathname = pathname.slice(0, -1);
 
-  const url =
-    process.env.NEXT_PUBLIC_ORIGIN +
-    (locale === defaultLocale ? '' : '/' + locale) +
-    pathname;
+  const url = process.env.NEXT_PUBLIC_ORIGIN + pathname
 
   return (
     <NextSeo
