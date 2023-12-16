@@ -33,11 +33,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Context.Provider value={{ signedIn, setSignedIn, alertsRef }}>
       <Vignette />
-      <Navbar />
       <PageLoader />
+      <Alerts ref={alertsRef} />
+      <Navbar />
       <Component {...pageProps} />
       <Footer />
-      <Alerts ref={alertsRef} />
     </Context.Provider>
   );
 }
