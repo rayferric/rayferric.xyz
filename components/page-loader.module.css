@@ -7,7 +7,6 @@
     background-color: var(--background-color);
     width: 100vw;
     height: 100vh;
-    margin-top: -35px;
     opacity: 1;
     pointer-events: none;
 }
