@@ -22,7 +22,7 @@ export function ImageViewer(props: Props) {
     document.addEventListener('keydown', keyListener);
 
     // Adjust image-rendering depending on img size.
-    // Use crisp-edges if image is zoomed in, otherwise use smooth.
+    // Use crisp-edges if image is zoomed in, otherwise use auto.
     const sizeListener = () => {
       if (!imgRef.current) return;
 
@@ -30,7 +30,7 @@ export function ImageViewer(props: Props) {
       if (img.clientWidth > img.naturalWidth) {
         img.style.imageRendering = 'crisp-edges';
       } else {
-        img.style.imageRendering = 'smooth';
+        img.style.imageRendering = 'auto';
       }
     };
     sizeListener(); // Call once to set initial image-rendering.
